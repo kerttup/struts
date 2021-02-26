@@ -52,6 +52,8 @@ public class TextareaTag extends AbstractUITag {
         textArea.setReadonly(readonly);
         textArea.setRows(rows);
         textArea.setWrap(wrap);
+        textArea.setMaxlength(maxlength);
+        textArea.setMinlength(minlength);
     }
 
     public void setCols(String cols) {
