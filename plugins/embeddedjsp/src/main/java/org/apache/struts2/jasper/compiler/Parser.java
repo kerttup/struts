@@ -1640,7 +1640,7 @@ class Parser implements TagConstants {
                 err.jspError(start, "jasper.error.emptybodycontent.nonempty",
                         tag);
             }
-        } else if (bodyType == JAVAX_BODY_CONTENT_PLUGIN) {
+        } else if (bodyType.equalsIgnoreCase(JAVAX_BODY_CONTENT_PLUGIN)) {
             // (note the == since we won't recognize JAVAX_*
             // from outside this module).
             parsePluginTags(parent);
@@ -1650,8 +1650,8 @@ class Parser implements TagConstants {
             }
         } else if (bodyType.equalsIgnoreCase(TagInfo.BODY_CONTENT_JSP)
                 || bodyType.equalsIgnoreCase(TagInfo.BODY_CONTENT_SCRIPTLESS)
-                || (bodyType == JAVAX_BODY_CONTENT_PARAM)
-                || (bodyType == JAVAX_BODY_CONTENT_TEMPLATE_TEXT)) {
+                || (bodyType.equalsIgnoreCase(JAVAX_BODY_CONTENT_PARAM))
+                || (bodyType.equalsIgnoreCase(JAVAX_BODY_CONTENT_TEMPLATE_TEXT))) {
             while (reader.hasMoreInput()) {
                 if (reader.matchesETag(tag)) {
                     return;
@@ -1672,12 +1672,12 @@ class Parser implements TagConstants {
                 } else if (bodyType
                         .equalsIgnoreCase(TagInfo.BODY_CONTENT_SCRIPTLESS)) {
                     parseElementsScriptless(parent);
-                } else if (bodyType == JAVAX_BODY_CONTENT_PARAM) {
+                } else if (bodyType.equalsIgnoreCase(JAVAX_BODY_CONTENT_PARAM)) {
                     // (note the == since we won't recognize JAVAX_*
                     // from outside this module).
                     reader.skipSpaces();
                     parseParam(parent);
-                } else if (bodyType == JAVAX_BODY_CONTENT_TEMPLATE_TEXT) {
+                } else if (bodyType.equalsIgnoreCase(JAVAX_BODY_CONTENT_TEMPLATE_TEXT)) {
                     parseElementsTemplateText(parent);
                 }
             }
